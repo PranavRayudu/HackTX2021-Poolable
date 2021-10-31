@@ -12,6 +12,12 @@ interface CakeTokenContract {
     function transfer(address recipient, uint256 amount)
         external
         returns (bool);
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
 }
 
 contract FakeFarm {
@@ -24,7 +30,7 @@ contract FakeFarm {
     }
 
     function stake(uint256 amount) external returns (uint256) {
-        cakeContract.transfer(address(this), amount);
+        cakeContract.transferFrom(msg.sender, address(this), amount);
         fundsToWithdraw += amount;
         return amount;
         // cakeContract.transfer(msg.sender, uint256((6 * msg.amount) / 5));
@@ -32,7 +38,7 @@ contract FakeFarm {
 
     function unstake() external returns (uint256) {
         uint256 res = fundsToWithdraw;
-        cakeContract.transfer(msg.sender, fundsToWithdraw);
+        cakeContract.transfer(msg.sender, (fundsToWithdraw * 6) / 5);
         fundsToWithdraw = 0;
         return res;
     }
