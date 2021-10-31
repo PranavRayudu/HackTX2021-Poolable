@@ -1,87 +1,41 @@
 {
-  "contractName": "FakeFarm",
+  "contractName": "CakeTokenContract",
   "abi": [
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_cakeAddr",
+          "name": "recipient",
           "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
+        },
         {
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
         }
       ],
-      "name": "stake",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function",
-      "payable": true
-    }
-  ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_cakeAddr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"stake\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/FakeFarm.sol\":\"FakeFarm\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/FakeFarm.sol\":{\"keccak256\":\"0xab2ad864393afc0fbd09781b5ac5277fc35e7730f2852cf7b8ec7a480500e9aa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6cf23ec1d9681d5c772e6b8e98aeddfbf97d55f91dc5529deef23adec1c8f2a\",\"dweb:/ipfs/QmRnSoXjgHnqNWmimtjwPFkJVZhBVhQqJVgSTSXTRdCjHd\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516101d33803806101d38339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505061013f806100946000396000f3fe60806040526004361061001e5760003560e01c80633a4b66f114610023575b600080fd5b61002b61002d565b005b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336005346006028161007757fe5b046040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1580156100cb57600080fd5b505af11580156100df573d6000803e3d6000fd5b505050506040513d60208110156100f557600080fd5b81019080805190602001909291905050505056fea264697066735822122022643f12e8cfef8884053ff49b1c13f9cf844bbb1126c74273e04ad4911b063064736f6c634300060c0033",
-  "deployedBytecode": "0x60806040526004361061001e5760003560e01c80633a4b66f114610023575b600080fd5b61002b61002d565b005b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336005346006028161007757fe5b046040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1580156100cb57600080fd5b505af11580156100df573d6000803e3d6000fd5b505050506040513d60208110156100f557600080fd5b81019080805190602001909291905050505056fea264697066735822122022643f12e8cfef8884053ff49b1c13f9cf844bbb1126c74273e04ad4911b063064736f6c634300060c0033",
-  "immutableReferences": {},
-  "sourceMap": "403:263:0:-:0;;;456:90;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;529:9;504:12;;:35;;;;;;;;;;;;;;;;;;456:90;403:263;;;;;;",
-  "deployedSourceMap": "403:263:0:-:0;;;;;;;;;;;;;;;;;;;;;552:112;;;:::i;:::-;;;594:12;;;;;;;;;;:21;;;616:10;654:1;641:9;637:1;:13;636:19;;;;;;594:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;552:112::o",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.8.0;\n\ninterface CakeToken {\n    /**\n     * @dev Moves `amount` tokens from the caller's account to `recipient`.\n     *\n     * Returns a boolean value indicating whether the operation succeeded.\n     *\n     * Emits a {Transfer} event.\n     */\n    function transfer(address recipient, uint256 amount)\n        external\n        returns (bool);\n}\n\ncontract FakeFarm {\n    CakeToken cakeContract;\n\n    constructor(address _cakeAddr) public {\n        cakeContract = CakeToken(_cakeAddr);\n    }\n\n    function stake() public payable {\n        cakeContract.transfer(msg.sender, uint256((6 * msg.value) / 5));\n    }\n}\n",
-  "sourcePath": "/home/harsha/Desktop/prjs/HackTX2021-Poolable/contracts/FakeFarm.sol",
+      "name": "transfer",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "bool",
           "name": "",
-          "type": "uint256"
+          "type": "bool"
         }
       ],
       "stateMutability": "nonpayable",
       "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "unstake",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getRewardsAvailable",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_cakeAddr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getRewardsAvailable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unstake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":\"FakeFarm\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":{\"keccak256\":\"0x8de82f52418edac58cd5c589ffbeaa9d19e3a02267ef8a4fd6f5d77bfe7cca18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6faad253d1ef750dc4af88d300b9ef070f435d2d4761d7239b4cec762df4e18e\",\"dweb:/ipfs/QmfWZVk9p4WAcEx9EURRL7HxzGDYgeAH5B5eFk68BkXYvc\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516103663803806103668339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550506102d2806100946000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80632def6620146100465780635ae64bd814610064578063a694fc3a14610082575b600080fd5b61004e6100c4565b6040518082815260200191505060405180910390f35b61006c6101aa565b6040518082815260200191505060405180910390f35b6100ae6004803603602081101561009857600080fd5b81019080803590602001909291905050506101b4565b6040518082815260200191505060405180910390f35b600080600154905060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336001546040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561015f57600080fd5b505af1158015610173573d6000803e3d6000fd5b505050506040513d602081101561018957600080fd5b81019080805190602001909291905050505060006001819055508091505090565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb30846040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561024857600080fd5b505af115801561025c573d6000803e3d6000fd5b505050506040513d602081101561027257600080fd5b8101908080519060200190929190505050508160016000828254019250508190555081905091905056fea264697066735822122088e07289e77fbc410142e0641326baccaf4736c0327a42c89d59b278a6b0ccac64736f6c634300060c0033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80632def6620146100465780635ae64bd814610064578063a694fc3a14610082575b600080fd5b61004e6100c4565b6040518082815260200191505060405180910390f35b61006c6101aa565b6040518082815260200191505060405180910390f35b6100ae6004803603602081101561009857600080fd5b81019080803590602001909291905050506101b4565b6040518082815260200191505060405180910390f35b600080600154905060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336001546040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561015f57600080fd5b505af1158015610173573d6000803e3d6000fd5b505050506040513d602081101561018957600080fd5b81019080805190602001909291905050505060006001819055508091505090565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb30846040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561024857600080fd5b505af115801561025c573d6000803e3d6000fd5b505050506040513d602081101561027257600080fd5b8101908080519060200190929190505050508160016000828254019250508190555081905091905056fea264697066735822122088e07289e77fbc410142e0641326baccaf4736c0327a42c89d59b278a6b0ccac64736f6c634300060c0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":\"CakeTokenContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":{\"keccak256\":\"0x8de82f52418edac58cd5c589ffbeaa9d19e3a02267ef8a4fd6f5d77bfe7cca18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6faad253d1ef750dc4af88d300b9ef070f435d2d4761d7239b4cec762df4e18e\",\"dweb:/ipfs/QmfWZVk9p4WAcEx9EURRL7HxzGDYgeAH5B5eFk68BkXYvc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
   "immutableReferences": {},
-  "sourceMap": "411:764:0:-:0;;;502:98;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;583:9;550:12;;:43;;;;;;;;;;;;;;;;;;502:98;411:764;;;;;;",
-  "deployedSourceMap": "411:764:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;866:201;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1073:100;;;:::i;:::-;;;;;;;;;;;;;;;;;;;606:254;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;866:201;903:7;922:11;936:15;;922:29;;961:12;;;;;;;;;;:21;;;983:10;995:15;;961:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1039:1;1021:15;:19;;;;1057:3;1050:10;;;866:201;:::o;1073:100::-;1125:7;1151:15;;1144:22;;1073:100;:::o;606:254::-;655:7;674:12;;;;;;;;;;;:21;;;704:4;711:6;674:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;747:6;728:15;;:25;;;;;;;;;;;770:6;763:13;;606:254;;;:::o",
+  "sourceMap": "",
+  "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.8.0;\n\ninterface CakeTokenContract {\n    /**\n     * @dev Moves `amount` tokens from the caller's account to `recipient`.\n     *\n     * Returns a boolean value indicating whether the operation succeeded.\n     *\n     * Emits a {Transfer} event.\n     */\n    function transfer(address recipient, uint256 amount)\n        external\n        returns (bool);\n}\n\ncontract FakeFarm {\n    CakeTokenContract cakeContract;\n\n    uint256 fundsToWithdraw;\n\n    constructor(address _cakeAddr) public {\n        cakeContract = CakeTokenContract(_cakeAddr);\n    }\n\n    function stake(uint256 amount) external returns (uint256) {\n        cakeContract.transfer(address(this), amount);\n        fundsToWithdraw += amount;\n        return amount;\n        // cakeContract.transfer(msg.sender, uint256((6 * msg.amount) / 5));\n    }\n\n    function unstake() external returns (uint256) {\n        uint256 res = fundsToWithdraw;\n        cakeContract.transfer(msg.sender, fundsToWithdraw);\n        fundsToWithdraw = 0;\n        return res;\n    }\n\n    function getRewardsAvailable() public view returns (uint256) {\n        return fundsToWithdraw;\n    }\n}\n",
   "sourcePath": "/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol",
   "ast": {
-    "absolutePath": "project:/contracts/FakeFarm.sol",
+    "absolutePath": "/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol",
     "exportedSymbols": {
       "CakeTokenContract": [
         12
@@ -685,257 +639,6 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 27,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "566:2:0"
-            },
-            "returnParameters": {
-              "id": 28,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "584:0:0"
-            },
-            "scope": 48,
-            "src": "552:112:0",
-            "stateMutability": "payable",
-            "virtual": false,
-            "visibility": "public"
-          }
-        ],
-        "scope": 49,
-        "src": "403:263:0"
-      }
-    ],
-    "src": "32:635:0"
-  },
-  "legacyAST": {
-    "attributes": {
-      "absolutePath": "project:/contracts/FakeFarm.sol",
-      "exportedSymbols": {
-        "CakeToken": [
-          12
-        ],
-        "FakeFarm": [
-          48
-        ]
-      },
-      "license": "MIT"
-    },
-    "children": [
-      {
-        "attributes": {
-          "literals": [
-            "solidity",
-            ">=",
-            "0.4",
-            ".22",
-            "<",
-            "0.8",
-            ".0"
-          ]
-        },
-        "id": 1,
-        "name": "PragmaDirective",
-        "src": "32:32:0"
-      },
-      {
-        "attributes": {
-          "abstract": false,
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
-          "contractKind": "interface",
-          "documentation": null,
-          "fullyImplemented": false,
-          "linearizedBaseContracts": [
-            12
-          ],
-          "name": "CakeToken",
-          "scope": 49
-        },
-        "children": [
-          {
-            "attributes": {
-              "body": null,
-              "functionSelector": "a9059cbb",
-              "implemented": false,
-              "isConstructor": false,
-              "kind": "function",
-              "modifiers": [
-                null
-              ],
-              "name": "transfer",
-              "overrides": null,
-              "scope": 12,
-              "stateMutability": "nonpayable",
-              "virtual": false,
-              "visibility": "external"
-            },
-            "children": [
-              {
-                "attributes": {
-                  "text": " @dev Moves `amount` tokens from the caller's account to `recipient`.\n Returns a boolean value indicating whether the operation succeeded.\n Emits a {Transfer} event."
-                },
-                "id": 2,
-                "name": "StructuredDocumentation",
-                "src": "92:209:0"
-              },
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "mutability": "mutable",
-                      "name": "recipient",
-                      "overrides": null,
-                      "scope": 11,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "stateMutability": "nonpayable",
-                          "type": "address"
-                        },
-                        "id": 3,
-                        "name": "ElementaryTypeName",
-                        "src": "324:7:0"
-                      }
-                    ],
-                    "id": 4,
-                    "name": "VariableDeclaration",
-                    "src": "324:17:0"
-                  },
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "mutability": "mutable",
-                      "name": "amount",
-                      "overrides": null,
-                      "scope": 11,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "uint256",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "uint256",
-                          "type": "uint256"
-                        },
-                        "id": 5,
-                        "name": "ElementaryTypeName",
-                        "src": "343:7:0"
-                      }
-                    ],
-                    "id": 6,
-                    "name": "VariableDeclaration",
-                    "src": "343:14:0"
-                  }
-                ],
-                "id": 7,
-                "name": "ParameterList",
-                "src": "323:35:0"
-              },
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "mutability": "mutable",
-                      "name": "",
-                      "overrides": null,
-                      "scope": 11,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "bool",
-                      "value": null,
-                      "visibility": "internal"
-                    },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "bool",
-                          "type": "bool"
-                        },
-                        "id": 8,
-                        "name": "ElementaryTypeName",
-                        "src": "393:4:0"
-                      }
-                    ],
-                    "id": 9,
-                    "name": "VariableDeclaration",
-                    "src": "393:4:0"
-                  }
-                ],
-                "id": 10,
-                "name": "ParameterList",
-                "src": "392:6:0"
-              }
-            ],
-            "id": 11,
-            "name": "FunctionDefinition",
-            "src": "306:93:0"
-          }
-        ],
-        "id": 12,
-        "name": "ContractDefinition",
-        "src": "66:335:0"
-      },
-      {
-        "attributes": {
-          "abstract": false,
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
-          "contractKind": "contract",
-          "documentation": null,
-          "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            48
-          ],
-          "name": "FakeFarm",
-          "scope": 49
-        },
-        "children": [
-          {
-            "attributes": {
-              "constant": false,
-              "mutability": "mutable",
-              "name": "cakeContract",
-              "overrides": null,
-              "scope": 48,
-              "stateVariable": true,
-              "storageLocation": "default",
-              "type": "contract CakeToken",
-              "value": null,
-              "visibility": "internal"
-            },
-            "children": [
-              {
-                "attributes": {
-                  "contractScope": null,
-                  "name": "CakeToken",
-                  "referencedDeclaration": 12,
-                  "type": "contract CakeToken"
-                },
-                "id": 13,
-                "name": "UserDefinedTypeName",
-                "src": "427:9:0"
               "id": 31,
               "nodeType": "ParameterList",
               "parameters": [
@@ -1625,42 +1328,11 @@
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
               }
-            ],
-            "id": 14,
-            "name": "VariableDeclaration",
-            "src": "427:22:0"
+            },
+            "value": null,
+            "visibility": "internal"
           },
           {
-            "attributes": {
-              "documentation": null,
-              "implemented": true,
-              "isConstructor": true,
-              "kind": "constructor",
-              "modifiers": [
-                null
-              ],
-              "name": "",
-              "overrides": null,
-              "scope": 48,
-              "stateMutability": "nonpayable",
-              "virtual": false,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "children": [
-                  {
-                    "attributes": {
-                      "constant": false,
-                      "mutability": "mutable",
-                      "name": "_cakeAddr",
-                      "overrides": null,
-                      "scope": 26,
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "type": "address",
-                      "value": null,
-                      "visibility": "internal"
             "body": {
               "id": 27,
               "nodeType": "Block",
@@ -1687,53 +1359,13 @@
                         "typeString": "contract CakeTokenContract"
                       }
                     },
-                    "children": [
-                      {
-                        "attributes": {
-                          "name": "address",
-                          "stateMutability": "nonpayable",
-                          "type": "address"
-                        },
-                        "id": 15,
-                        "name": "ElementaryTypeName",
-                        "src": "468:7:0"
-                      }
-                    ],
-                    "id": 16,
-                    "name": "VariableDeclaration",
-                    "src": "468:17:0"
-                  }
-                ],
-                "id": 17,
-                "name": "ParameterList",
-                "src": "467:19:0"
-              },
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 18,
-                "name": "ParameterList",
-                "src": "494:0:0"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
-                      {
-                        "attributes": {
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
                           "argumentTypes": null,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "lValueRequested": false,
-                          "operator": "=",
-                          "type": "contract CakeToken"
-                        },
-                        "children": [
                           "id": 23,
                           "name": "_cakeAddr",
                           "nodeType": "Identifier",
@@ -1749,137 +1381,10 @@
                       "expression": {
                         "argumentTypes": [
                           {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
-                              "referencedDeclaration": 14,
-                              "type": "contract CakeToken",
-                              "value": "cakeContract"
-                            },
-                            "id": 19,
-                            "name": "Identifier",
-                            "src": "504:12:0"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": false,
-                              "isStructConstructorCall": false,
-                              "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
-                              "tryCall": false,
-                              "type": "contract CakeToken",
-                              "type_conversion": true
-                            },
-                            "children": [
-                              {
-                                "attributes": {
-                                  "argumentTypes": [
-                                    {
-                                      "typeIdentifier": "t_address",
-                                      "typeString": "address"
-                                    }
-                                  ],
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
-                                  "referencedDeclaration": 12,
-                                  "type": "type(contract CakeToken)",
-                                  "value": "CakeToken"
-                                },
-                                "id": 20,
-                                "name": "Identifier",
-                                "src": "519:9:0"
-                              },
-                              {
-                                "attributes": {
-                                  "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
-                                  "referencedDeclaration": 16,
-                                  "type": "address",
-                                  "value": "_cakeAddr"
-                                },
-                                "id": 21,
-                                "name": "Identifier",
-                                "src": "529:9:0"
-                              }
-                            ],
-                            "id": 22,
-                            "name": "FunctionCall",
-                            "src": "519:20:0"
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
                           }
                         ],
-                        "id": 23,
-                        "name": "Assignment",
-                        "src": "504:35:0"
-                      }
-                    ],
-                    "id": 24,
-                    "name": "ExpressionStatement",
-                    "src": "504:35:0"
-                  }
-                ],
-                "id": 25,
-                "name": "Block",
-                "src": "494:52:0"
-              }
-            ],
-            "id": 26,
-            "name": "FunctionDefinition",
-            "src": "456:90:0"
-          },
-          {
-            "attributes": {
-              "documentation": null,
-              "functionSelector": "3a4b66f1",
-              "implemented": true,
-              "isConstructor": false,
-              "kind": "function",
-              "modifiers": [
-                null
-              ],
-              "name": "stake",
-              "overrides": null,
-              "scope": 48,
-              "stateMutability": "payable",
-              "virtual": false,
-              "visibility": "public"
-            },
-            "children": [
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 27,
-                "name": "ParameterList",
-                "src": "566:2:0"
-              },
-              {
-                "attributes": {
-                  "parameters": [
-                    null
-                  ]
-                },
-                "children": [],
-                "id": 28,
-                "name": "ParameterList",
-                "src": "584:0:0"
-              },
-              {
-                "children": [
-                  {
-                    "children": [
                         "id": 22,
                         "name": "CakeTokenContract",
                         "nodeType": "Identifier",
@@ -2330,292 +1835,9 @@
                     "argumentTypes": null,
                     "arguments": [
                       {
-                        "attributes": {
+                        "argumentTypes": null,
+                        "expression": {
                           "argumentTypes": null,
-                          "isConstant": false,
-                          "isLValue": false,
-                          "isPure": false,
-                          "isStructConstructorCall": false,
-                          "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
-                          "tryCall": false,
-                          "type": "bool",
-                          "type_conversion": false
-                        },
-                        "children": [
-                          {
-                            "attributes": {
-                              "argumentTypes": [
-                                {
-                                  "typeIdentifier": "t_address_payable",
-                                  "typeString": "address payable"
-                                },
-                                {
-                                  "typeIdentifier": "t_uint256",
-                                  "typeString": "uint256"
-                                }
-                              ],
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": false,
-                              "lValueRequested": false,
-                              "member_name": "transfer",
-                              "referencedDeclaration": 11,
-                              "type": "function (address,uint256) external returns (bool)"
-                            },
-                            "children": [
-                              {
-                                "attributes": {
-                                  "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
-                                  "referencedDeclaration": 14,
-                                  "type": "contract CakeToken",
-                                  "value": "cakeContract"
-                                },
-                                "id": 29,
-                                "name": "Identifier",
-                                "src": "594:12:0"
-                              }
-                            ],
-                            "id": 31,
-                            "name": "MemberAccess",
-                            "src": "594:21:0"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": false,
-                              "lValueRequested": false,
-                              "member_name": "sender",
-                              "referencedDeclaration": null,
-                              "type": "address payable"
-                            },
-                            "children": [
-                              {
-                                "attributes": {
-                                  "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
-                                  "referencedDeclaration": -15,
-                                  "type": "msg",
-                                  "value": "msg"
-                                },
-                                "id": 32,
-                                "name": "Identifier",
-                                "src": "616:3:0"
-                              }
-                            ],
-                            "id": 33,
-                            "name": "MemberAccess",
-                            "src": "616:10:0"
-                          },
-                          {
-                            "attributes": {
-                              "argumentTypes": null,
-                              "isConstant": false,
-                              "isLValue": false,
-                              "isPure": false,
-                              "isStructConstructorCall": false,
-                              "lValueRequested": false,
-                              "names": [
-                                null
-                              ],
-                              "tryCall": false,
-                              "type": "uint256",
-                              "type_conversion": true
-                            },
-                            "children": [
-                              {
-                                "attributes": {
-                                  "argumentTypes": [
-                                    {
-                                      "typeIdentifier": "t_uint256",
-                                      "typeString": "uint256"
-                                    }
-                                  ],
-                                  "isConstant": false,
-                                  "isLValue": false,
-                                  "isPure": true,
-                                  "lValueRequested": false,
-                                  "type": "type(uint256)"
-                                },
-                                "children": [
-                                  {
-                                    "attributes": {
-                                      "name": "uint256",
-                                      "type": null
-                                    },
-                                    "id": 34,
-                                    "name": "ElementaryTypeName",
-                                    "src": "628:7:0"
-                                  }
-                                ],
-                                "id": 35,
-                                "name": "ElementaryTypeNameExpression",
-                                "src": "628:7:0"
-                              },
-                              {
-                                "attributes": {
-                                  "argumentTypes": null,
-                                  "commonType": {
-                                    "typeIdentifier": "t_uint256",
-                                    "typeString": "uint256"
-                                  },
-                                  "isConstant": false,
-                                  "isLValue": false,
-                                  "isPure": false,
-                                  "lValueRequested": false,
-                                  "operator": "/",
-                                  "type": "uint256"
-                                },
-                                "children": [
-                                  {
-                                    "attributes": {
-                                      "argumentTypes": null,
-                                      "isConstant": false,
-                                      "isInlineArray": false,
-                                      "isLValue": false,
-                                      "isPure": false,
-                                      "lValueRequested": false,
-                                      "type": "uint256"
-                                    },
-                                    "children": [
-                                      {
-                                        "attributes": {
-                                          "argumentTypes": null,
-                                          "commonType": {
-                                            "typeIdentifier": "t_uint256",
-                                            "typeString": "uint256"
-                                          },
-                                          "isConstant": false,
-                                          "isLValue": false,
-                                          "isPure": false,
-                                          "lValueRequested": false,
-                                          "operator": "*",
-                                          "type": "uint256"
-                                        },
-                                        "children": [
-                                          {
-                                            "attributes": {
-                                              "argumentTypes": null,
-                                              "hexvalue": "36",
-                                              "isConstant": false,
-                                              "isLValue": false,
-                                              "isPure": true,
-                                              "lValueRequested": false,
-                                              "subdenomination": null,
-                                              "token": "number",
-                                              "type": "int_const 6",
-                                              "value": "6"
-                                            },
-                                            "id": 36,
-                                            "name": "Literal",
-                                            "src": "637:1:0"
-                                          },
-                                          {
-                                            "attributes": {
-                                              "argumentTypes": null,
-                                              "isConstant": false,
-                                              "isLValue": false,
-                                              "isPure": false,
-                                              "lValueRequested": false,
-                                              "member_name": "value",
-                                              "referencedDeclaration": null,
-                                              "type": "uint256"
-                                            },
-                                            "children": [
-                                              {
-                                                "attributes": {
-                                                  "argumentTypes": null,
-                                                  "overloadedDeclarations": [
-                                                    null
-                                                  ],
-                                                  "referencedDeclaration": -15,
-                                                  "type": "msg",
-                                                  "value": "msg"
-                                                },
-                                                "id": 37,
-                                                "name": "Identifier",
-                                                "src": "641:3:0"
-                                              }
-                                            ],
-                                            "id": 38,
-                                            "name": "MemberAccess",
-                                            "src": "641:9:0"
-                                          }
-                                        ],
-                                        "id": 39,
-                                        "name": "BinaryOperation",
-                                        "src": "637:13:0"
-                                      }
-                                    ],
-                                    "id": 40,
-                                    "name": "TupleExpression",
-                                    "src": "636:15:0"
-                                  },
-                                  {
-                                    "attributes": {
-                                      "argumentTypes": null,
-                                      "hexvalue": "35",
-                                      "isConstant": false,
-                                      "isLValue": false,
-                                      "isPure": true,
-                                      "lValueRequested": false,
-                                      "subdenomination": null,
-                                      "token": "number",
-                                      "type": "int_const 5",
-                                      "value": "5"
-                                    },
-                                    "id": 41,
-                                    "name": "Literal",
-                                    "src": "654:1:0"
-                                  }
-                                ],
-                                "id": 42,
-                                "name": "BinaryOperation",
-                                "src": "636:19:0"
-                              }
-                            ],
-                            "id": 43,
-                            "name": "FunctionCall",
-                            "src": "628:28:0"
-                          }
-                        ],
-                        "id": 44,
-                        "name": "FunctionCall",
-                        "src": "594:63:0"
-                      }
-                    ],
-                    "id": 45,
-                    "name": "ExpressionStatement",
-                    "src": "594:63:0"
-                  }
-                ],
-                "id": 46,
-                "name": "Block",
-                "src": "584:80:0"
-              }
-            ],
-            "id": 47,
-            "name": "FunctionDefinition",
-            "src": "552:112:0"
-          }
-        ],
-        "id": 48,
-        "name": "ContractDefinition",
-        "src": "403:263:0"
-      }
-    ],
-    "id": 49,
-    "name": "SourceUnit",
-    "src": "32:635:0"
                           "id": 64,
                           "name": "msg",
                           "nodeType": "Identifier",
@@ -2934,23 +2156,16 @@
     "name": "solc",
     "version": "0.6.12+commit.27d51765.Emscripten.clang"
   },
-  "networks": {
-    "97": {
-      "events": {},
-      "links": {},
-      "address": "0x1dDC649c38103ACFACa7035d01a2644157DB73bC",
-      "transactionHash": "0x4655ca59ade5555f0f7eab1f19084389189f0343ae24c92c7f5dfa6b9609c028"
-    }
-  },
-  "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-31T07:28:13.841Z",
-  "networkType": "ethereum",
   "networks": {},
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-10-31T07:38:24.774Z",
+  "updatedAt": "2021-10-31T07:38:24.773Z",
   "devdoc": {
     "kind": "dev",
-    "methods": {},
+    "methods": {
+      "transfer(address,uint256)": {
+        "details": "Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
+      }
+    },
     "version": 1
   },
   "userdoc": {

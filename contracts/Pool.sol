@@ -7,6 +7,13 @@ interface PancakeRouter {
         address to,
         uint256 deadline
     ) external payable returns (uint256[] memory amounts);
+
+    function swapExactTokensForETH(
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external payable returns (uint256[] memory amounts);
 }
 
 interface CakeToken {
@@ -27,8 +34,10 @@ interface CakeToken {
     function balanceOf(address account) external view returns (uint256);
 }
 
-interface FakeFarm {
-    function stake() external returns (uint256);
+interface FakeFarmContract {
+    function stake(uint256 amount) external returns (uint256);
+
+    function unstake() external returns (uint256);
 }
 
 contract Pool {
@@ -38,7 +47,7 @@ contract Pool {
     address cakeAddr;
     PancakeRouter swapper;
     CakeToken cakeContract;
-    FakeFarm fakeFarm;
+    FakeFarmContract fakeFarm;
     uint256 baseYield;
 
     address public owner;
@@ -66,7 +75,7 @@ contract Pool {
         swapper = PancakeRouter(_routerAddr);
         // cakeContract = CakeToken(0xf9f93cf501bfadb6494589cb4b4c15de49e85d0e);
         cakeContract = CakeToken(_cakeTokenAddr);
-        fakeFarm = FakeFarm(_fakeFarmAddr);
+        fakeFarm = FakeFarmContract(_fakeFarmAddr);
         WBNBAddr = 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd;
         cakeAddr = 0xF9f93cF501BFaDB6494589Cb4b4C15dE49E85D0e;
         numPpl = 0;
@@ -82,7 +91,7 @@ contract Pool {
         path[0] = WBNBAddr;
         path[1] = cakeAddr;
         uint256[] memory amts = swapper.swapExactETHForTokens{value: msg.value}(
-            msg.value,
+            0,
             path,
             address(this),
             1667183841
@@ -101,6 +110,8 @@ contract Pool {
         
         totalAmt += amts[0];
         // cakeContract.transfer(recipient, amount);
+        // cakeContract.transfer(recipient, amount);
+        _stake();
     }
 
     function random(uint256 max) private returns (uint256) {
@@ -112,7 +123,6 @@ contract Pool {
     }
 
     function lottery() public onlyOwner {
-        fakeFarm.stake();
 
         uint256 newTotal = cakeContract.balanceOf(address(this));
         uint32 factor = 1000;
@@ -139,9 +149,18 @@ contract Pool {
         }
     }
 
-    function withdraw() public {
+    function _stake() private returns (uint256) {
+        uint256 staked = fakeFarm.stake(cakeContract.balanceOf(address(this)));
+        return staked;
+    }
+
+    function distribute() public returns (uint256) {
+        uint256 unstaked = fakeFarm.unstake();
         // do lottery, pick wallets of participants proportional to deposit
         
+        // disperse all profits (make sure to track initial deposits) to window
+        // for each winner blah blah blah
+        return unstaked;
     }
 
     function test() public pure returns (string memory) {
