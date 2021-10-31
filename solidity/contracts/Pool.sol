@@ -25,8 +25,8 @@ interface CakeToken {
      * Emits a {Transfer} event.
      */
     function transfer(address recipient, uint256 amount)
-        external
-        returns (bool);
+    external
+    returns (bool);
 
     /**
      * @dev Returns the amount of tokens owned by `account`.
@@ -79,7 +79,8 @@ contract Pool {
         WBNBAddr = 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd;
         cakeAddr = 0xF9f93cF501BFaDB6494589Cb4b4C15dE49E85D0e;
         numPpl = 0;
-        baseYield = 5; //percent
+        baseYield = 5;
+        //percent
     }
 
     function setSwapper(address _contract) public {
@@ -90,7 +91,7 @@ contract Pool {
         address[] memory path = new address[](2);
         path[0] = WBNBAddr;
         path[1] = cakeAddr;
-        uint256[] memory amts = swapper.swapExactETHForTokens{value: msg.value}(
+        uint256[] memory amts = swapper.swapExactETHForTokens{value : msg.value}(
             0,
             path,
             address(this),
@@ -102,12 +103,12 @@ contract Pool {
         // if(stakingAmts[msg.sender] == null){
 
         // } else{
-        if(stakingAmts[msg.sender] == 0){
+        if (stakingAmts[msg.sender] == 0) {
             names[numPpl] = msg.sender;
             numPpl++;
         }
         stakingAmts[msg.sender] += amts[0];
-        
+
         totalAmt += amts[0];
         // cakeContract.transfer(recipient, amount);
         // cakeContract.transfer(recipient, amount);
@@ -115,10 +116,10 @@ contract Pool {
     }
 
     function random(uint256 max) private returns (uint256) {
-        randNonce++; 
+        randNonce++;
         return uint256(keccak256(abi.encodePacked(now,
-                                                msg.sender,
-                                                randNonce))) % max;
+            msg.sender,
+            randNonce))) % max;
         // return uint8(uint256(keccak256(abi.encodePacked(_text, _num, _addr))%max);
     }
 
@@ -128,8 +129,8 @@ contract Pool {
         uint32 factor = 1000;
         uint256[] memory slots = new uint256[](numPpl);
         uint256 totSlots = 0;
-        //[1, 5, 4] 
-        for(uint256 i = 0; i<numPpl; i++){
+        //[1, 5, 4]
+        for (uint256 i = 0; i < numPpl; i++) {
             uint256 contribution = stakingAmts[names[i]];
             uint256 numSlots = (contribution / totalAmt) * factor;
             slots[i] = numSlots;
@@ -138,11 +139,11 @@ contract Pool {
 
         uint256 numWinners = (numPpl > 100) ? 10 : 1;
         uint256 winAmt = (newTotal - totalAmt) / numWinners;
-        for(uint8 i = 0; i<numWinners; i++){
+        for (uint8 i = 0; i < numWinners; i++) {
             uint256 winner = random(totSlots + 1);
-            //0.1 * 
-            for(uint256 j=0; j < numPpl; j++){
-                if(slots[j] < winner) winner -= slots[j];
+            //0.1 *
+            for (uint256 j = 0; j < numPpl; j++) {
+                if (slots[j] < winner) winner -= slots[j];
                 //have found j as winner
                 stakingAmts[names[j]] += winAmt;
             }
@@ -157,7 +158,7 @@ contract Pool {
     function distribute() public returns (uint256) {
         uint256 unstaked = fakeFarm.unstake();
         // do lottery, pick wallets of participants proportional to deposit
-        
+
         // disperse all profits (make sure to track initial deposits) to window
         // for each winner blah blah blah
         return unstaked;
@@ -165,5 +166,17 @@ contract Pool {
 
     function test() public pure returns (string memory) {
         return "poo";
+    }
+
+    function getStaked() public view returns (uint256) {
+        return totalAmt;
+    }
+
+    function getStakingUsers() public view returns (address[] memory) {
+        return names;
+    }
+
+    function getStakingAmount(address _key) public view returns (uint256) {
+        return stakingAmts[_key];
     }
 }

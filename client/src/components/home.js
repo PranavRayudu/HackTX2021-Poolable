@@ -123,6 +123,8 @@ const Home = () => {
         setUserBalance(balance);
     };
 
+    // const [get]
+
     // If not loading and no user found, redirect to /login
     useEffect(() => {
         user && !user.loading && !user.issuer && history.push('/login');
@@ -138,10 +140,16 @@ const Home = () => {
                 .then((rates) => rates.USD);
 
             setConversionRate(await rate);
+
+            if (contract && user && !user.loading) {
+                console.log(user.publicAddress);
+                let totalInvested = await contract.methods.getStaked().call({from: user.publicAddress});
+                console.log('invested', totalInvested);
+            }
         }
 
         // console.log(user);
-        // console.log(contract);
+        console.log(contract);
         user && !user.loading && user.issuer && getBalance();
         getConversion();
 

@@ -18,7 +18,8 @@ export const magic = new Magic(process.env.REACT_APP_MAGIC_PUBLISHABLE_KEY, {
 /* Initialize Binance Smart Chain Web3 provider */
 export const web3 = new Web3(magic.rpcProvider);
 
+console.log(contractAbi.networks[Object.keys(contractAbi.networks)[0]]);
 export const contract = new web3.eth.Contract(
     contractAbi.abi,
-    contractAbi.networks[97].address
+    "0xcA18Ffa72f42d1224FE4da2c4613d8E69B86325A"
 );
