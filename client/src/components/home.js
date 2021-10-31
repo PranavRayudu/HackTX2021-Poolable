@@ -49,6 +49,7 @@ const Home = () => {
     let [conversionRate, setConversionRate] = useState(1.0);
     const [activeStep, setActiveStep] = useState(0);
     const [completed, setCompleted] = useState({});
+    // const [users, setUserAmts] =
     const steps = getSteps();
 
     const totalSteps = () => {
@@ -93,7 +94,10 @@ const Home = () => {
     // };
 
 
-    let [amount, setAmount] = useState(0);
+    let [amount, setAmount] = useState(0.01);
+    let [totalStake, setTotalStake] = useState(0);
+    let [myStake, setMyStake] = useState(0);
+    // let [inc, setMyInc] = userState(0);
     let [btnState, setBtnState] = useState({val: "Invest", disabled: true});
 
     const getWallets = () => {
@@ -121,6 +125,7 @@ const Home = () => {
         // console.log(user);
         // console.log(balance);
         setUserBalance(balance);
+        setBtnState({...btnState, disabled: balance < amount});
     };
 
     // const [get]
@@ -129,6 +134,7 @@ const Home = () => {
     useEffect(() => {
         user && !user.loading && !user.issuer && history.push('/login');
 
+        console.log('address', contract._address);
 
         let getConversion = async function () {
             let rate = fetch('https://api.coinbase.com/v2/exchange-rates?currency=BNB')
@@ -145,8 +151,15 @@ const Home = () => {
                 console.log(user.publicAddress);
                 let totalInvested = await contract.methods.getStaked().call({from: user.publicAddress});
                 console.log('invested', totalInvested);
+                setTotalStake(totalInvested);
+
+                let invested = await contract.methods.getStakingAmount(user.publicAddress).call({from: user.publicAddress});
+                console.log('my state', invested);
+                setMyStake(invested);
             }
         }
+
+        // setTotalStake(await contract.methods.getStaked().call())
 
         // console.log(user);
         console.log(contract);
@@ -166,15 +179,20 @@ const Home = () => {
         // const fromAddress = (await web3.eth.getAccounts())[0];
         // Submit transaction to the blockchain and wait for it to be mined
 
-        const receipt = await web3.eth.sendTransaction({
+        // const receipt = await web3.eth.sendTransaction({
+        // from: user.publicAddress,
+        // to: contract._address,
+        console.log(amount);
+        const receipt = await contract.methods.deposit().send({
             from: user.publicAddress,
-            to: contract.address,
+            gas: 1000000,
             value: web3.utils.toWei(amount),
-        }).then(() => {
+        }).then((res) => {
+            console.log(res);
             getBalance();
             handleNext();
-        }).catch(() => {
-            // console.log('bad transaction')
+        }).catch((err) => {
+            console.log('bad transaction', err);
         }).finally(() => {
             setBtnState({val: "Invest", disabled: false});
         });
@@ -248,7 +266,18 @@ const Home = () => {
                         </Grid>
                     </Box>);
             case 2:
-                return <Typography variant={"h6"}>Balance: {userBalance} BNB</Typography>;
+                return (
+                    <Paper style={{padding: "20px 40px", background: "#eee", width: "100%"}}>
+                        <Box my={2}>
+                            <Typography variant={"h6"}>{totalStake} Cake</Typography>Total Pool
+                        </Box>
+                        <Box my={2}>
+                            <Typography variant={"h6"}>{myStake} Cake</Typography>Your Stake
+                        </Box>
+                        <div my={2}>
+                            <Typography variant={"h6"}>{userBalance} BNB</Typography>Balance
+                        </div>
+                    </Paper>);
             default:
                 return 'Unknown step';
         }
@@ -261,7 +290,7 @@ const Home = () => {
             <Grid container>
                 <Grid item>
                     <Typography variant={"h4"}>{userBalance} BNB
-                        (${(conversionRate * userBalance).toFixed(2)})</Typography>
+                        (${(conversionRate * userBalance)})</Typography>
                     <Typography variant={"subtitle2"} color={"textSecondary"}>
                         Public Address: {user.publicAddress}
                     </Typography>

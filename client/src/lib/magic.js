@@ -21,5 +21,5 @@ export const web3 = new Web3(magic.rpcProvider);
 console.log(contractAbi.networks[Object.keys(contractAbi.networks)[0]]);
 export const contract = new web3.eth.Contract(
     contractAbi.abi,
-    "0xcA18Ffa72f42d1224FE4da2c4613d8E69B86325A"
+    "0xFa9170Ff8d7785073Dd28d54e9C409E199EBf0dd"
 );

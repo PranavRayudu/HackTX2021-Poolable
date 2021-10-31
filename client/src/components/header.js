@@ -41,7 +41,7 @@ const Header = () => {
 
                             {/*<Link href={"/"}>Poolable</Link>*/}
                             <Button color="inherit" href={"/"} style={{textTransform: "none"}}>
-                                <Typography variant={"h6"} className={classes.title}>Poolable</Typography>
+                                <Typography variant={"h6"} className={classes.title}>BitSnacks</Typography>
                             </Button>
                         </Grid>
 
