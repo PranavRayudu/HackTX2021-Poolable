@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.8.0;
 
-interface CakeToken {
+interface CakeTokenContract {
     /**
      * @dev Moves `amount` tokens from the caller's account to `recipient`.
      *
@@ -15,13 +15,29 @@ interface CakeToken {
 }
 
 contract FakeFarm {
-    CakeToken cakeContract;
+    CakeTokenContract cakeContract;
+
+    uint256 fundsToWithdraw;
 
     constructor(address _cakeAddr) public {
-        cakeContract = CakeToken(_cakeAddr);
+        cakeContract = CakeTokenContract(_cakeAddr);
     }
 
-    function stake() public payable {
-        cakeContract.transfer(msg.sender, uint256((6 * msg.value) / 5));
+    function stake(uint256 amount) external returns (uint256) {
+        cakeContract.transfer(address(this), amount);
+        fundsToWithdraw += amount;
+        return amount;
+        // cakeContract.transfer(msg.sender, uint256((6 * msg.amount) / 5));
+    }
+
+    function unstake() external returns (uint256) {
+        uint256 res = fundsToWithdraw;
+        cakeContract.transfer(msg.sender, fundsToWithdraw);
+        fundsToWithdraw = 0;
+        return res;
+    }
+
+    function getRewardsAvailable() public view returns (uint256) {
+        return fundsToWithdraw;
     }
 }
