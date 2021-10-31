@@ -1,69 +1,37 @@
 {
-  "contractName": "FakeFarm",
+  "contractName": "CakeTokenContract",
   "abi": [
     {
       "inputs": [
         {
           "internalType": "address",
-          "name": "_cakeAddr",
+          "name": "recipient",
           "type": "address"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-    },
-    {
-      "inputs": [
+        },
         {
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
         }
       ],
-      "name": "stake",
+      "name": "transfer",
       "outputs": [
         {
-          "internalType": "uint256",
+          "internalType": "bool",
           "name": "",
-          "type": "uint256"
+          "type": "bool"
         }
       ],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "unstake",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getRewardsAvailable",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_cakeAddr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getRewardsAvailable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unstake\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":\"FakeFarm\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":{\"keccak256\":\"0x8de82f52418edac58cd5c589ffbeaa9d19e3a02267ef8a4fd6f5d77bfe7cca18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6faad253d1ef750dc4af88d300b9ef070f435d2d4761d7239b4cec762df4e18e\",\"dweb:/ipfs/QmfWZVk9p4WAcEx9EURRL7HxzGDYgeAH5B5eFk68BkXYvc\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506040516103663803806103668339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550506102d2806100946000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80632def6620146100465780635ae64bd814610064578063a694fc3a14610082575b600080fd5b61004e6100c4565b6040518082815260200191505060405180910390f35b61006c6101aa565b6040518082815260200191505060405180910390f35b6100ae6004803603602081101561009857600080fd5b81019080803590602001909291905050506101b4565b6040518082815260200191505060405180910390f35b600080600154905060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336001546040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561015f57600080fd5b505af1158015610173573d6000803e3d6000fd5b505050506040513d602081101561018957600080fd5b81019080805190602001909291905050505060006001819055508091505090565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb30846040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561024857600080fd5b505af115801561025c573d6000803e3d6000fd5b505050506040513d602081101561027257600080fd5b8101908080519060200190929190505050508160016000828254019250508190555081905091905056fea264697066735822122088e07289e77fbc410142e0641326baccaf4736c0327a42c89d59b278a6b0ccac64736f6c634300060c0033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80632def6620146100465780635ae64bd814610064578063a694fc3a14610082575b600080fd5b61004e6100c4565b6040518082815260200191505060405180910390f35b61006c6101aa565b6040518082815260200191505060405180910390f35b6100ae6004803603602081101561009857600080fd5b81019080803590602001909291905050506101b4565b6040518082815260200191505060405180910390f35b600080600154905060008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb336001546040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561015f57600080fd5b505af1158015610173573d6000803e3d6000fd5b505050506040513d602081101561018957600080fd5b81019080805190602001909291905050505060006001819055508091505090565b6000600154905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb30846040518363ffffffff1660e01b8152600401808373ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b15801561024857600080fd5b505af115801561025c573d6000803e3d6000fd5b505050506040513d602081101561027257600080fd5b8101908080519060200190929190505050508160016000828254019250508190555081905091905056fea264697066735822122088e07289e77fbc410142e0641326baccaf4736c0327a42c89d59b278a6b0ccac64736f6c634300060c0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"transfer(address,uint256)\":{\"details\":\"Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":\"CakeTokenContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":{\"keccak256\":\"0x8de82f52418edac58cd5c589ffbeaa9d19e3a02267ef8a4fd6f5d77bfe7cca18\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6faad253d1ef750dc4af88d300b9ef070f435d2d4761d7239b4cec762df4e18e\",\"dweb:/ipfs/QmfWZVk9p4WAcEx9EURRL7HxzGDYgeAH5B5eFk68BkXYvc\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
   "immutableReferences": {},
-  "sourceMap": "411:764:0:-:0;;;502:98;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;583:9;550:12;;:43;;;;;;;;;;;;;;;;;;502:98;411:764;;;;;;",
-  "deployedSourceMap": "411:764:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;866:201;;;:::i;:::-;;;;;;;;;;;;;;;;;;;1073:100;;;:::i;:::-;;;;;;;;;;;;;;;;;;;606:254;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;866:201;903:7;922:11;936:15;;922:29;;961:12;;;;;;;;;;:21;;;983:10;995:15;;961:50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1039:1;1021:15;:19;;;;1057:3;1050:10;;;866:201;:::o;1073:100::-;1125:7;1151:15;;1144:22;;1073:100;:::o;606:254::-;655:7;674:12;;;;;;;;;;;:21;;;704:4;711:6;674:44;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;747:6;728:15;;:25;;;;;;;;;;;770:6;763:13;;606:254;;;:::o",
+  "sourceMap": "",
+  "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.8.0;\n\ninterface CakeTokenContract {\n    /**\n     * @dev Moves `amount` tokens from the caller's account to `recipient`.\n     *\n     * Returns a boolean value indicating whether the operation succeeded.\n     *\n     * Emits a {Transfer} event.\n     */\n    function transfer(address recipient, uint256 amount)\n        external\n        returns (bool);\n}\n\ncontract FakeFarm {\n    CakeTokenContract cakeContract;\n\n    uint256 fundsToWithdraw;\n\n    constructor(address _cakeAddr) public {\n        cakeContract = CakeTokenContract(_cakeAddr);\n    }\n\n    function stake(uint256 amount) external returns (uint256) {\n        cakeContract.transfer(address(this), amount);\n        fundsToWithdraw += amount;\n        return amount;\n        // cakeContract.transfer(msg.sender, uint256((6 * msg.amount) / 5));\n    }\n\n    function unstake() external returns (uint256) {\n        uint256 res = fundsToWithdraw;\n        cakeContract.transfer(msg.sender, fundsToWithdraw);\n        fundsToWithdraw = 0;\n        return res;\n    }\n\n    function getRewardsAvailable() public view returns (uint256) {\n        return fundsToWithdraw;\n    }\n}\n",
   "sourcePath": "/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol",
   "ast": {
@@ -2190,10 +2158,14 @@
   },
   "networks": {},
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-10-31T07:38:24.774Z",
+  "updatedAt": "2021-10-31T07:38:24.773Z",
   "devdoc": {
     "kind": "dev",
-    "methods": {},
+    "methods": {
+      "transfer(address,uint256)": {
+        "details": "Moves `amount` tokens from the caller's account to `recipient`. Returns a boolean value indicating whether the operation succeeded. Emits a {Transfer} event."
+      }
+    },
     "version": 1
   },
   "userdoc": {
