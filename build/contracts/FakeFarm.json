@@ -17,7 +17,8 @@
       "name": "stake",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_cakeAddr\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"stake\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":\"FakeFarm\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/kevinli/HackTX2021-Poolable/contracts/FakeFarm.sol\":{\"keccak256\":\"0xab2ad864393afc0fbd09781b5ac5277fc35e7730f2852cf7b8ec7a480500e9aa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d6cf23ec1d9681d5c772e6b8e98aeddfbf97d55f91dc5529deef23adec1c8f2a\",\"dweb:/ipfs/QmRnSoXjgHnqNWmimtjwPFkJVZhBVhQqJVgSTSXTRdCjHd\"]}},\"version\":1}",
@@ -1354,12 +1355,13 @@
     "97": {
       "events": {},
       "links": {},
-      "address": "0x45C5b7EB1b012550c51C64C670BF551582BA1bCC",
-      "transactionHash": "0x3a33a2d4feeeb42af95c62bf251cf1006af08c23279d2d057d909baf8e90effb"
+      "address": "0xE94D404dF5c0Ff608A07A9B803Cb3f1Ccf467ec5",
+      "transactionHash": "0xff660c931d1b281e6612ac2d01d80d7b43f2e91c852811f41a3a00f6afad124d"
     }
   },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-10-31T04:17:56.594Z",
+  "updatedAt": "2021-10-31T06:36:52.338Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

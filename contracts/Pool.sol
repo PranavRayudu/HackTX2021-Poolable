@@ -7,6 +7,13 @@ interface PancakeRouter {
         address to,
         uint256 deadline
     ) external payable returns (uint256[] memory amounts);
+
+    function swapExactTokensForETH(
+        uint256 amountOutMin,
+        address[] calldata path,
+        address to,
+        uint256 deadline
+    ) external payable returns (uint256[] memory amounts);
 }
 
 interface CakeToken {
@@ -78,29 +85,11 @@ contract Pool {
         path[0] = WBNBAddr;
         path[1] = cakeAddr;
         uint256[] memory amts = swapper.swapExactETHForTokens{value: msg.value}(
-            msg.value,
+            0,
             path,
             address(this),
             1667183841
         );
-
-        //increase user's amt by x cake units
-
-        // if(stakingAmts[msg.sender] == null){
-
-        // } else{
-
-        stakingAmts[msg.sender] += amts[0];
-        // }
-        totalAmt += amts[0];
-        // cakeContract.transfer(recipient, amount);
-    }
-
-    function lottery() public onlyOwner {
-        fakeFarm.stake();
-
-        uint256 newTotal = cakeContract.balanceOf(address(this));
-        // for(uint256 i = 0; i<stakingAmts.)
     }
 
     function withdraw() public {
